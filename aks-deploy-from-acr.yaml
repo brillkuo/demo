@@ -50,7 +50,7 @@ spec:
     spec:
       containers:
         - name: aspnetapp-app1-container
-          image: brillkuo/demo:latest
+          image: bblacrrepo4321.azurecr.io/brillkuo/demo
           ports:
             - containerPort: 80
 ---
@@ -85,7 +85,7 @@ spec:
     spec:
       containers:
         - name: aspnetapp-app2-container
-          image: brillkuo/demo:latest
+          image: bblacrrepo4321.azurecr.io/brillkuo/demo
           ports:
             - containerPort: 80
 ---
