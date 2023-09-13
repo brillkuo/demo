@@ -10,5 +10,15 @@ public class HelloController {
 	public String index() {
 		return "Greetings from Spring Boot!";
 	}
+	
+	@GetMapping("/app1")
+	public String app1() {
+		return "my app1";
+	}
+	
+	@GetMapping("/app2")
+	public String app2() {
+		return "my app2";
+	}
 
 }
