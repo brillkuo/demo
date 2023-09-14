@@ -3,11 +3,11 @@ kind: Ingress
 metadata:
   name: my-ingress
   annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
     appgw.ingress.kubernetes.io/ssl-redirect: "false"
     appgw.ingress.kubernetes.io/use-regex: "true"
     appgw.ingress.kubernetes.io/rewrite-target: /$2
 spec:
-  ingressClassName: azure-application-gateway
   rules:
   - http:
       paths:
@@ -17,14 +17,14 @@ spec:
           service:
             name: aspnetapp-app1-service
             port:
-              number: 80
+              number: 8080
       - path: /app2(/|$)(.*)
         pathType: Prefix
         backend:
           service:
             name: aspnetapp-app2-service
             port:
-              number: 80
+              number: 8080
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -45,7 +45,7 @@ spec:
         - name: aspnetapp-app1-container
           image: bblacrrepo4321.azurecr.io/brillkuo/demo
           ports:
-            - containerPort: 80
+            - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -58,8 +58,8 @@ spec:
   selector:
     app: aspnetapp-app1
   ports: 
-    - port: 80
-      targetPort: 80
+    - port: 8080
+      targetPort: 8080
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -80,7 +80,7 @@ spec:
         - name: aspnetapp-app2-container
           image: bblacrrepo4321.azurecr.io/brillkuo/demo
           ports:
-            - containerPort: 80
+            - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -93,5 +93,5 @@ spec:
   selector:
     app: aspnetapp-app2
   ports: 
-    - port: 80
-      targetPort: 80
+    - port: 8080
+      targetPort: 8080
