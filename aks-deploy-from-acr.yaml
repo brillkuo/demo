@@ -4,7 +4,6 @@ metadata:
   name: my-ingress
   annotations:
     kubernetes.io/ingress.class: azure/application-gateway
-    appgw.ingress.kubernetes.io/override-frontend-port: "8080"
     appgw.ingress.kubernetes.io/health-probe-status-codes: "200-500"
     appgw.ingress.kubernetes.io/health-probe-hostname: localhost
     appgw.ingress.kubernetes.io/health-probe-path: /helth
@@ -22,14 +21,14 @@ spec:
           service:
             name: aspnetapp-app1-service
             port:
-              number: 8080
+              number: 80
       - path: /app2(/|$)(.*)
         pathType: Prefix
         backend:
           service:
             name: aspnetapp-app2-service
             port:
-              number: 8080
+              number: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -50,7 +49,7 @@ spec:
         - name: aspnetapp-app1-container
           image: bblacrrepo4321.azurecr.io/brillkuo/demo
           ports:
-            - containerPort: 8080
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -63,8 +62,8 @@ spec:
   selector:
     app: aspnetapp-app1
   ports: 
-    - port: 8080
-      targetPort: 8080
+    - port: 80
+      targetPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -85,7 +84,7 @@ spec:
         - name: aspnetapp-app2-container
           image: bblacrrepo4321.azurecr.io/brillkuo/demo
           ports:
-            - containerPort: 8080
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -98,5 +97,5 @@ spec:
   selector:
     app: aspnetapp-app2
   ports: 
-    - port: 8080
-      targetPort: 8080
+    - port: 80
+      targetPort: 80
