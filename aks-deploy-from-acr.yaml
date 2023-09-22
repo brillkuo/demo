@@ -48,6 +48,7 @@ metadata:
   name: aspnetapp-app1-service
   labels: 
     app: aspnetapp-app1
+    k8s-app: aspnetapp-app1 
 spec:
   type: ClusterIP 
   selector:
