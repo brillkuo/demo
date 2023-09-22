@@ -15,6 +15,11 @@ public class HelloController {
 	public String health() {
 		return "health check";
 	}
+
+	@GetMapping("/app1/health")
+	public String app1health() {
+		return "app1 health check";
+	}
 	
 	@GetMapping("/app1")
 	public String app1() {
