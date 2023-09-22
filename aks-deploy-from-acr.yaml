@@ -4,10 +4,11 @@ metadata:
   name: my-ingress
   annotations:
     kubernetes.io/ingress.class: azure/application-gateway
-    appgw.ingress.kubernetes.io/health-probe-path: /health
-    appgw.ingress.kubernetes.io/health-probe-port: '8085'
-    appgw.ingress.kubernetes.io/health-probe-interval: "45"
-    appgw.ingress.kubernetes.io/use-private-ip: 'false'
+    appgw.ingress.kubernetes.io/backend-path-prefix: "/"
+    appgw.ingress.kubernetes.io/health-probe-path: "/health"
+    appgw.ingress.kubernetes.io/health-probe-port: "8085"
+    appgw.ingress.kubernetes.io/health-probe-hostname: "localhost"
+    appgw.ingress.kubernetes.io/use-private-ip: "false"
 spec:
   rules:
   - http:
